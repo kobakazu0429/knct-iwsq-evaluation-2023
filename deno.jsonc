@@ -1,0 +1,19 @@
+{
+  "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+  "tasks": {},
+  "imports": {
+    "std/": "https://deno.land/std@0.209.0/",
+    "sqlite": "https://deno.land/x/sqlite@v3.8/mod.ts",
+    "csv": "https://deno.land/x/csv/mod.ts"
+  },
+  "lint": {
+    "rules": {
+      "tags": [
+        "no-explicit-any"
+      ]
+    }
+  },
+  "fmt": {
+    "lineWidth": 100
+  }
+}

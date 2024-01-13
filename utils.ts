@@ -80,7 +80,8 @@ export const readTSV = (path: string) => {
   const tsv = Deno.readTextFileSync(path);
   const [header, ...body] = tsv
     .split("\n")
-    .map((v) => v.split("\t").map((v) => v.trim()));
+    .map((v) => v.split("\t").map((v) => v.trim()))
+    .filter((v) => v.every((c) => c !== ""));
 
   const data = body.map((row) =>
     Object.fromEntries(row.map((v, i) => [header[i], v]))

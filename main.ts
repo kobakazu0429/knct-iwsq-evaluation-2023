@@ -5,6 +5,7 @@ import { leaveHistory } from "./leave_history.ts";
 import { openDays } from "./open_days.ts";
 import { ta } from "./ta.ts";
 import { lectureHistory } from "./lecture_history.ts";
+import { students } from "./students.ts";
 
 const db = new DB("test.db");
 
@@ -23,10 +24,11 @@ const use = async (table: Table) => {
   log(`end ${table.tableName}`);
 };
 
-use(enterHistory);
-use(leaveHistory);
-use(openDays);
-use(ta);
-use(lectureHistory);
+await use(enterHistory);
+await use(leaveHistory);
+await use(openDays);
+await use(ta);
+await use(lectureHistory);
+await use(students);
 
 db.close();

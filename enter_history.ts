@@ -1,5 +1,10 @@
 import type { DB } from "sqlite";
-import { dateToSqliteDatetime, extractUserInfo, getFY } from "./utils.ts";
+import {
+  dateToSqliteDatetime,
+  extractUserInfo,
+  getFY,
+  getDay,
+} from "./utils.ts";
 import { Table } from "./types.ts";
 
 export const enterHistory: Table = {
@@ -13,6 +18,7 @@ export const enterHistory: Table = {
         department TEXT NOT NULL,
         grade INTEGER NOT NULL,
         fy INTEGER NOT NULL,
+        day TEXT NOT NULL,
         enter_count INTEGER NOT NULL
       )
     `);
@@ -32,11 +38,12 @@ export const enterHistory: Table = {
           user.grade,
           getFY(new Date(datetime)),
           parseInt(enterCount, 10),
+          getDay(new Date(datetime)),
         ];
       });
 
     const query = db.prepareQuery(
-      `INSERT INTO ${this.tableName} (created_at, student_no, department, grade, fy, enter_count) VALUES (?, ?, ?, ?, ?, ?)`
+      `INSERT INTO ${this.tableName} (created_at, student_no, department, grade, fy, enter_count, day) VALUES (?, ?, ?, ?, ?, ?, ?)`
     );
     enterDataArray.forEach((v) => query.execute(v));
     query.finalize();

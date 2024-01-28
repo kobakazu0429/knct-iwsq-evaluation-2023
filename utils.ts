@@ -52,6 +52,12 @@ export const dateToSqliteDatetime = (date: Date) => {
     .replaceAll("/", "-");
 };
 
+export const getDay = (date: Date) => {
+  const day = date.getDay();
+  const days = ["日", "月", "火", "水", "木", "金", "土"];
+  return days[day];
+};
+
 export const getFY = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth();

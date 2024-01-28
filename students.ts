@@ -9,7 +9,7 @@ export const students: Table = {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         student_no TEXT NOT NULL,
         department TEXT NOT NULL,
-        year INTEGER NOT NULL,
+        grade INTEGER NOT NULL,
         name TEXT NOT NULL,
         team TEXT NOT NULL,
         UNIQUE(student_no, team)
@@ -17,7 +17,7 @@ export const students: Table = {
     `);
 
     const q = db.prepareQuery(
-      `INSERT INTO ${this.tableName} (student_no, department, year, name, team) VALUES (:student_no, :department, :year, :name, :team)`
+      `INSERT INTO ${this.tableName} (student_no, department, grade, name, team) VALUES (:student_no, :department, :grade, :name, :team)`
     );
 
     {
@@ -27,7 +27,7 @@ export const students: Table = {
         const data = {
           student_no: user.studentNo,
           department: user.department,
-          year: user.year,
+          grade: user.grade,
           name: u["名前"],
           team: "ロボコン部",
         };

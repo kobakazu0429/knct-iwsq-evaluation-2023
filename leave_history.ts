@@ -18,7 +18,7 @@ export const leaveHistory: Table = {
         created_at TEXT NOT NULL,
         student_no TEXT NOT NULL,
         department TEXT NOT NULL,
-        year INTEGER NOT NULL,
+        grade INTEGER NOT NULL,
         fy INTEGER NOT NULL,
         equipment_id TEXT,
         equipment_name TEXT,
@@ -27,7 +27,7 @@ export const leaveHistory: Table = {
     `);
 
     const query = db.prepareQuery(
-      `INSERT INTO ${this.tableName} (created_at, student_no, department, year, fy, equipment_id, equipment_name, equipment_kind) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO ${this.tableName} (created_at, student_no, department, grade, fy, equipment_id, equipment_name, equipment_kind) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
     );
 
     const f = await Deno.open("./入退室システム - 退室.csv");
@@ -46,7 +46,7 @@ export const leaveHistory: Table = {
           dateToSqliteDatetime(new Date(datetime)),
           user.studentNo,
           user.department,
-          user.year,
+          user.grade,
           getFY(new Date(datetime)),
           id,
           name,

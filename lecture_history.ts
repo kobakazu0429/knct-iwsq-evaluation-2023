@@ -18,12 +18,12 @@ export const lectureHistory: Table = {
         lecture_name TEXT NOT NULL,
         instructor_name TEXT NOT NULL,
         department TEXT NOT NULL,
-        year INTEGER NOT NULL,
+        grade INTEGER NOT NULL,
         fy INTEGER NOT NULL
       )
     `);
     const q = db.prepareQuery(
-      `INSERT INTO ${this.tableName} (student_no, created_at, name, lecture_name, instructor_name, department, year, fy) VALUES (?,?,?,?,?,?,?,?)`
+      `INSERT INTO ${this.tableName} (student_no, created_at, name, lecture_name, instructor_name, department, grade, fy) VALUES (?,?,?,?,?,?,?,?)`
     );
     const data = readTSV("./講習会受講登録 - DB.tsv");
     data.forEach((v) => {
@@ -36,7 +36,7 @@ export const lectureHistory: Table = {
         v["講習"],
         v["講習担当者名を入力してください。"],
         user["department"],
-        user["year"],
+        user["grade"],
         getFY(new Date(v["日付"])),
       ]);
     });

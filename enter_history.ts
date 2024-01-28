@@ -11,7 +11,7 @@ export const enterHistory: Table = {
         created_at TEXT NOT NULL,
         student_no TEXT NOT NULL,
         department TEXT NOT NULL,
-        year INTEGER NOT NULL,
+        grade INTEGER NOT NULL,
         fy INTEGER NOT NULL,
         enter_count INTEGER NOT NULL
       )
@@ -29,14 +29,14 @@ export const enterHistory: Table = {
           dateToSqliteDatetime(new Date(datetime)),
           user.studentNo,
           user.department,
-          user.year,
+          user.grade,
           getFY(new Date(datetime)),
           parseInt(enterCount, 10),
         ];
       });
 
     const query = db.prepareQuery(
-      `INSERT INTO ${this.tableName} (created_at, student_no, department, year, fy, enter_count) VALUES (?, ?, ?, ?, ?, ?)`
+      `INSERT INTO ${this.tableName} (created_at, student_no, department, grade, fy, enter_count) VALUES (?, ?, ?, ?, ?, ?)`
     );
     enterDataArray.forEach((v) => query.execute(v));
     query.finalize();

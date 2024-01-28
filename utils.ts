@@ -64,14 +64,14 @@ export const getFY = (date: Date) => {
 export const extractUserInfo = (studentNo: string, needValid = true) => {
   // @ts-expect-error
   const department = DEPARTMENT_MAP[studentNo[0]];
-  const year = parseInt(studentNo.slice(1, 5), 10);
+  const grade = parseInt(studentNo.slice(1, 5), 10);
   const idValid = studentNo.at(-1) === "0";
   if (needValid && !idValid) {
     throw new Error(`Invalid \`enter\`: ${studentNo}`);
   }
   return {
     department,
-    year,
+    grade,
     studentNo: needValid ? studentNo.slice(0, -1) : studentNo,
   };
 };
